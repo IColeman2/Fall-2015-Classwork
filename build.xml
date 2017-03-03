@@ -1,0 +1,67 @@
+-<project name="CSCE155 - Java - Arrays and Dynamic Memory Lab" basedir="." default="run-memLeakA" >
+
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value="build"/>
+	<property name="classes.dir" value="${build.dir}/classes"/>
+	<property name="statistics.main" value="unl.cse.memory.Statistics"/>
+	<property name="memory.leak.demo.a" value="unl.cse.memory.MemoryLeakA"/>
+	<property name="memory.leak.demo.b" value="unl.cse.memory.MemoryLeakB"/>
+
+
+-<target name="clean">
+	<delete dir="${build.dir}"/>
+</target>
+
+
++<target name="compile">
+
+
+-<path id="run.path">
+
+<pathelement path="${classes.dir}"/>
+
+</path>
+
+
+-<target name="run-stats">
+
+
+-<java fork="false" classname="${statistics.main}">
+
+<classpath refid="run.path"/>
+
+</java>
+
+</target>
+
+
+-<target name="run-memLeakA">
+
+
+-<java fork="true" classname="${memory.leak.demo.a}">
+
+<classpath refid="run.path"/>
+
+<jvmarg value="-verbose:gc -XX:+PrintGCDetails"/>
+
+<arg value="1000000"/>
+
+</java>
+
+</target>
+
+
+-<target name="run-memLeakB">
+
+
+-<java fork="true" classname="${memory.leak.demo.b}" output="/dev/null">
+
+<classpath refid="run.path"/>
+
+<arg value="1000000"/>
+
+</java>
+
+</target>
+
+</project>
